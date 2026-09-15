@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Scanntech API v3.0 Movimentos - Etapa 01",
+  "description": "JSON Schema for validating movimento payloads in Etapa 01 (Sell-out básico)",
+  "type": "object",
+  "required": [
+    "fecha",
+    "numero",
+    "total",
+    "detalles",
+    "pagos",
+    "cancelacion"
+  ],
+  "properties": {
+    "fecha": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time in ISO 8601 format with timezone"
+    },
+    "numero": {
+      "type": "string",
+      "description": "Coupon number"
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total amount of the coupon"
+    },
+    "cancelacion": {
+      "type": "boolean",
+      "description": "Indicates if the coupon is canceled"
+    },
+    "detalles": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of item details"
+    },
+    "pagos": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of payment details"
+    },
+    "descuentoTotal": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0,
+      "description": "Total discount amount"
+    },
+    "recargoTotal": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0,
+      "description": "Total surcharge amount"
+    },
+    "codigoMoneda": {
+      "type": "string",
+      "enum": ["986"],
+      "default": "986",
+      "description": "Currency code (986 = Brazilian Real)"
+    },
+    "cotizacion": {
+      "type": "number",
+      "default": 1.00,
+      "description": "Exchange rate"
+    }
+  },
+  "additionalProperties": false
+}
