@@ -23,6 +23,11 @@ class ValidationResult:
         self.warnings.append(message)
 
 class ValidationEngine:
+    def _tem_exatamente_duas_casas_decimais(self, valor: float) -> bool:
+        """Verifica se um valor tem exatamente 2 casas decimais."""
+        # Multiplicar por 100 e verificar se é inteiro
+        return abs(valor * 100 - round(valor * 100)) < 1e-9
+
     """Motor responsável por validar movimentos conforme as regras da Etapa 01."""
     
     def validar_movimiento(self, movimiento: Movimiento) -> ValidationResult:
@@ -62,15 +67,32 @@ class ValidationEngine:
         return result
     
     def _validar_detalles(self, detalles: List[Detalle], result: ValidationResult):
-        """Valida a lista de detalhes."""
+        """Valida a lista de detalhes conforme estrutura necessária."""
         if not detalles:
             result.add_warning("Nenhum detalhe informado")
             return
-            
+
         for i, detalle in enumerate(detalles):
             if not detalle.data:
                 result.add_warning(f"Detalhe {i+1} está vazio")
-    
+                continue
+
+            # Verificar campos obrigatórios conforme documentação da API
+            campos_obrigatorios = ["codigoArticulo", "codigoBarras", "descripcionArticulo", "cantidad", "importeUnitario", "importe"]
+            campos_faltantes = [campo for campo in campos_obrigatorios if campo not in detalle.data]
+
+            if campos_faltantes:
+                result.add_error(f"Detalhe {i+1} está faltando os campos obrigatórios: {", ".join(campos_faltantes)}")
+                continue
+
+            # Validar formato numérico dos valores monetários (2 casas decimais)
+            campos_valor = ["importeUnitario", "importe"]
+            for campo in campos_valor:
+                if campo in detalle.data and detalle.data[campo] is not None:
+                    try:
+                        valor = float(detalle.data[campo])
+                        if not self._tem_exatamente_duas_casas_decimais(valor):
+                            result.add_error(f"Detalhe {i+1}, campo '{campo}' deve ter exatamente 2 casas decimais")
     def _validar_pagos(self, pagos: List[Pago], result: ValidationResult):
         """Valida a lista de pagos."""
         if not pagos:
