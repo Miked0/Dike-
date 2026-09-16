@@ -23,7 +23,6 @@
     },
     "total": {
       "type": "number",
-      "minimum": 0,
       "description": "Total amount of the coupon"
     },
     "cancelacion": {
