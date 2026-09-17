@@ -36,11 +36,9 @@ class Movimiento:
     
     def __post_init__(self):
         """Validações após a inicialização."""
-        if self.total < 0:
-            raise ValueError("Total não pode ser negativo")
         if self.descuento_total < 0:
             raise ValueError("Desconto total não pode ser negativo")
         if self.recargo_total < 0:
             raise ValueError("Recargo total não pode ser negativo")
         if self.cotizacion <= 0:
-            raise ValueError("Cotação deve ser maior que zero")
+            raise ValueError("Cotação deve ser maior que cero")

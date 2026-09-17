@@ -1,0 +1,44 @@
+# config/regras_etapa01.yaml
+versao: "0.1.0"
+etapa: "01"
+contexto: "sell-out"
+
+regras:
+  - id: "R001"
+    nome: "campos_obrigatorios_venda"
+    descricao: "Valida a presenca e tipagem do cabecalho do cupom"
+    campos:
+      - nome: "fecha"
+        tipo: "string"
+        formato: "ISO8601"
+        obrigatorio: true
+      - nome: "numero"
+        tipo: "string"
+        obrigatorio: true
+      - nome: "codigoMoneda"
+        tipo: "integer"
+        valor_esperado: 986
+        obrigatorio: true
+      - nome: "cotizacion"
+        tipo: "number"
+        valor_esperado: 1.00
+        obrigatorio: true
+      - nome: "total"
+        tipo: "number"
+        casas_decimais: 2
+        obrigatorio: true
+      - nome: "cancelacion"
+        tipo: "boolean"
+        obrigatorio: true
+
+  - id: "R002"
+    nome: "array_detalhes_itens"
+    descricao: "Valida se os itens da venda contem os dados minimos"
+    campos:
+      - nome: "codigoArticulo"
+        tipo: "string"
+        obrigatorio: true
+      - nome: "importeUnitario"
+        tipo: "number"
+        casas_decimais: 4
+        obrigatorio: true

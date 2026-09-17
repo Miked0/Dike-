@@ -6,6 +6,18 @@
 
 Dikē é uma aplicação Streamlit projetada para validar respostas de API contra roteiros de testes e cupons fiscais, garantindo conformidade com os padrões da Scanntech 3.0.
 
+## 👥 Desenvolvimento com Agentes Especializados
+
+Este projeto utiliza uma abordagem de desenvolvimento com agentes especializados, cada um com responsabilidades bem definidas:
+
+- **PO (Mike) - Orquestrador**: Visão geral do projeto, priorização de demandas, alinhamento de escopo, delegação de tarefas e validação final
+- **Planejador (Atlas)**: Transforma demandas em tarefas executáveis, define critérios de aceite e estima complexidade
+- **QA (Vega)**: Revisão de roteiros de teste, validação de cenários, análise de JSONs/XMLs e conferência de regras de negócio
+- **Dev Backend (Orion)**: Implementação de scripts Python, automações e integrações
+- **DevOps/Suporte (Lynx)**: Apoio em infraestrutura leve, documentação técnica e validação de ambientes
+
+Consulte o [WORKSPACE_GUIDE.md](WORKSPACE_GUIDE.md) para detalhes completos sobre a estrutura de trabalho com agentes.
+
 ## 🚀 Funcionalidades
 
 - Upload de roteiro de testes (XLSX/CSV)
@@ -19,8 +31,16 @@ Dikē é uma aplicação Streamlit projetada para validar respostas de API contr
 
 ```
 projeto01/
-├── main.py                 # Aplicação Streamlit principal
+├── main.py                 # ou Dikē .py - Aplicação Streamlit principal
 ├── README.md               # Este arquivo
+├── WORKSPACE_GUIDE.md      # Guia da estrutura de trabalho com agentes
+├── .claude/                # Configurações e kanbans dos agentes
+│   └── agents/
+│       ├── po_kanban.md           # Kanban do PO/Orquestrador
+│       ├── planejador_kanban.md   # Kanban do Planejador
+│       ├── qa_kanban.md           # Kanban do QA
+│       ├── dev_kanban.md          # Kanban do Desenvolvedor Backend
+│       └── devops_kanban.md       # Kanban do DevOps/Suporte
 ├── config/                 # Configurações e esquemas
 │   └── schema_etapa01.json # Esquema de validação para Etapa 01
 ├── models/                 # Modelos de dados
@@ -40,6 +60,10 @@ projeto01/
 3. Execute a aplicação:
    ```bash
    streamlit run main.py
+   ```
+   ou
+   ```bash
+   streamlit run Dikē .py
    ```
 
 ## 📝 Licença

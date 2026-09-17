@@ -1,0 +1,41 @@
+{
+  "description": "PDF de cupom fiscal para teste CT-008",
+  "filename": "cupom_teste.pdf",
+  "content_type": "application/pdf",
+  "expected_extracted_data": {
+    "numero": "000123",
+    "data_emissao": "2026-09-15",
+    "hora_emissao": "14:30:00",
+    "cnpj_emitente": "12345678000195",
+    "razao_social": "SUPERMERCADO EXEMPLO LTDA",
+    "valor_total": 55.3,
+    "desconto": 5.0,
+    "valor_total_bruto": 60.3,
+    "itens": [
+      {
+        "numero_item": 1,
+        "codigo": "7891000123456",
+        "descricao": "ARROZ AGULHA 5KG",
+        "quantidade": 2,
+        "unidade": "KG",
+        "valor_unitario": 25.9,
+        "valor_total_item": 51.8
+      },
+      {
+        "numero_item": 2,
+        "codigo": "7891000123457",
+        "descricao": "FEIJAO CARIOCA 1KG",
+        "quantidade": 1,
+        "unidade": "KG",
+        "valor_unitario": 8.5,
+        "valor_total_item": 8.5
+      }
+    ],
+    "pagamentos": [
+      {
+        "tipo": "Dinheiro",
+        "valor": 55.3
+      }
+    ]
+  }
+}

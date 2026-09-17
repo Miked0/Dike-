@@ -1,0 +1,54 @@
+{
+  "description": "Imagem de cupom fiscal para teste CT-009",
+  "filename": "cupom_teste.jpg",
+  "content_type": "image/jpeg",
+  "expected_extracted_data": {
+    "numero": "000124",
+    "data_emissao": "2026-09-15",
+    "hora_emissao": "14:35:00",
+    "cnpj_emitente": "12345678000195",
+    "razao_social": "SUPERMERCADO EXEMPLO LTDA",
+    "valor_total": 45.8,
+    "desconto": 0.0,
+    "valor_total_bruto": 45.8,
+    "itens": [
+      {
+        "numero_item": 1,
+        "codigo": "7891000123458",
+        "descricao": "LEITE INTEGRAL 1L",
+        "quantidade": 2,
+        "unidade": "L",
+        "valor_unitario": 4.5,
+        "valor_total_item": 9.0
+      },
+      {
+        "numero_item": 2,
+        "codigo": "7891000123459",
+        "descricao": "PÃO FRANCÊS",
+        "quantidade": 5,
+        "unidade": "UN",
+        "valor_unitario": 0.5,
+        "valor_total_item": 2.5
+      },
+      {
+        "numero_item": 3,
+        "codigo": "7891000123460",
+        "descricao": "MARGARINA 200G",
+        "quantidade": 1,
+        "unidade": "UN",
+        "valor_unitario": 6.8,
+        "valor_total_item": 6.8
+      }
+    ],
+    "pagamentos": [
+      {
+        "tipo": "Cartão Débito",
+        "valor": 25.0
+      },
+      {
+        "tipo": "Dinheiro",
+        "valor": 20.8
+      }
+    ]
+  }
+}

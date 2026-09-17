@@ -1,2 +1,8 @@
 streamlit>=1.28.0
 pandas>=2.0.0
+jsonschema>=4.0.0
+# OCR dependencies for PDF/image processing
+pytesseract>=0.3.10
+Pillow>=10.0.0
+pdf2image>=1.16.0
+PyPDF2>=3.0.0

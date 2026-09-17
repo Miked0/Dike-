@@ -26,7 +26,7 @@
 2. **Reaproveitamento:** Utilizar componentes existentes quando possível
 3. **Simplicidade:** Evitar sobre-engenharia
 4. **Testabilidade:** Código fácil de testar unitariamente
-5. **Documentação:** Comentários claros e docstrings quando necessario
+5. **Documentação:** Comentários claros e docstrings cuando necessario
 6. **Tratamento de Erros:** Exceções específicas e mensagens claras
 
 ## Tarefas Pronto para Iniciar
@@ -56,27 +56,36 @@
 - Mantiene rastreabilidad (log o comentario sobre fuentes de datos)
 **Dependencias:** DEV-001, DEV-002, DEV-003
 **Estimativa:** 10 horas
-**Status:** Concluído - Testes unitários abrangentes implementados para _criar_movimiento_desde_dados, cobrindo todos os cenários de prioridade de fontes, conversão de tipos, tratamento de erros e casos limite. Todos os testes passando.
+**Status:** Concluído - Testes unitarios abrangentes implementados para _criar_movimiento_desde_dados, cobrindo todos os cenários de prioridade de fuentes, conversão de tipos, tratamento de erros e casos limite. Todos os testes pasando.
 
 ### Tarefa DEV-005: Implementar Validações Completas do ValidationEngine
-**Descrição:** Completar las validaciones pendentes no ValidationEngine conforme schema_etapa01.json
+**Descripción:** Completar las validaciones pendentes no ValidationEngine conforme schema_etapa01.json, incluyendo implementação clara da regra de precedência JSON > Cupom > Roteiro para tratamento de inconsistências entre fontes de datos
 **Localización:** src/validators/validation_engine.py
 **Requisitos:**
-- Implementar _validar_detalles com regras específicas conforme estrutura real
-- Implementar _validar_pagos com regras específicas conforme estrutura real
-- Completar _validar_consistencia_total_detalles com cálculo real
-- Completar _validar_consistencia_total_pagos com cálculo real
+- Implementar _validar_detalles con reglas específicas conforme estructura real
+- Implementar _validar_pagos con reglas específicas conforme estructura real
+- Completar _validar_consistencia_total_detalles con cálculo real
+- Completar _validar_consistencia_total_pagos con cálculo real
 - Revisar y mejorar _validar_desconto_recargo conforme necesario
 - Agregar validaciones adicionales conforme descubrimos en el esquema
+- **Implementar tratamiento claro de inconsistencias entre fuentes de datos con precedencia: JSON da API > Cupom Fiscal > Roteiro de Testes**
+- Generar mensajes de error específicos indicando quais fontes foram usadas e quais foram ignoradas
+- Validar que el resultado final es consistente consigo mismo después de aplicar la regla de precedencia
 **Critérios de Aceite:**
 - Todas las validaciones obligatorias del schema están implementadas
 - Las validaciones detectan correctamente inconsistencias reales
 - Mensajes de error son específicos y útiles
 - Rendimiento adecuado para validación de lote
 - Código bem probado unitariamente
-**Dependencias:** Entendimiento da estrutura real dos detalhes e pagos (a ser fornecido pelo QA/PO)
+- Código implementa claramente a regra de precedência JSON > Cupom > Roteiro
+- Testes unitários cobrem cenários de inconsistência entre todas as combinações de fuentes (JSON-Cupom, JSON-Roteiro, Cupom-Roteiro, três fontes)
+- Mensagens de error são claros e acionáveis para o usuário final
+- Nenhuma regressão nas validações existentes (CT-001 a CT-005 continuam pasando)
+**Dependencias:** Entendimiento da estructura real dos detalhes e pagos (a ser fornecido pelo QA/PO)
 **Estimativa:** 12 horas
-**Status:** Significativamente avançado - Implementados _validar_detalles e _validar_pagos com validação abrangente de identificadores e informações de valor; completados _validar_consistencia_total_detalles e _validar_consistencia_total_pagos com cálculos reais incluindo descontos/acréscimos; melhoradas validações de descontos/acréscimos com warnings para valores excessivos; criado suite abrangente de testes unitários (24 testes) cobrindo todos os cenários de validação. Todos os testes passando.
+**Status:** Significativamente avançado - Implementados _validar_detalles e _validar_pagos com validação abrangente de identificadores e informações de valor; completados _validar_consistencia_total_detalles e _validar_consistencia_total_pagos com cálculos reales incluindo descontos/acréscimos; mejoradas validações de descontos/acréscimos com warnings para valores excesivos; creado suite abrangente de testes unitários (24 testes) cobrindo todos os cenários de validação. Todos os testes pasando.
+**Prazo para Conclusão:** 3 dias úteis (até 2026-09-19)
+**Delegado por:** Product Owner (Mike) em 2026-09-16 com esclarecimento de regra de negócio: JSON > Cupom > Roteiro
 
 ## Tarefas Em Code Review
 - [ ] Nenhuma no momento
@@ -87,8 +96,8 @@
 ## Tarefas Concluído
 
 ### Tarefa DEV-001: Implementar Parser XML para Cupons Fiscais
-**Descrição:** Criar módulo para parsear arquivos XML de cupons fiscais conforme schema_etapa01.json
-**Localização:** src/parsers/xml_parser.py
+**Descripción:** Criar módulo para parsear arquivos XML de cupons fiscais conforme schema_etapa01.json
+**Localización:** src/parsers/xml_parser.py
 **Entrada:** Conteúdo bytes do arquivo XML
 **Saída:** Dicionário con todos los campos del movimiento conforme modelo
 **Requisitos:**
@@ -101,7 +110,7 @@
 **Critérios de Aceite:**
 - Parser lê arquivos XML de teste fornecidos pelo QA
 - Todos los campos obligatorios están extraídos correctamente
-- Tipos de datos estão correctos (datetime, float, bool, etc.)
+- Tipos de datos están correctos (datetime, float, bool, etc.)
 - Errores de parsing generan excepciones específicas com mensagens úteis
 - Performance adecuada (<1s para archivos hasta 5MB)
 - Código sigue los estándares del proyecto (pep8, imports claros, etc.)
@@ -110,8 +119,8 @@
 **Status:** Concluído
 
 ### Tarefa DEV-002: Implementar Parser CSV/XLSX para Roteiro de Testes
-**Descrição:** Criar módulo para extrair casos de teste de planilhas CSV e XLSX
-**Localização:** src/parsers/roteiro_parser.py
+**Descripción:** Criar módulo para extrair casos de teste de planilhas CSV e XLSX
+**Localización:** src/parsers/roteiro_parser.py
 **Entrada:** Conteúdo bytes do arquivo CSV/XLSX
 **Saída:** Lista de dicionários, cada un representando un caso de prueba
 **Requisitos:**
@@ -132,10 +141,10 @@
 **Status:** Concluído
 
 ### Tarefa DEV-003: Implementar Processamento do JSON da API
-**Descrição:** Crear módulo para procesar e validar el payload JSON da API conforme schema_etapa01.json, garantindo a compatibilidade com o ValidationService e preparando para a criação do objeto Movimiento.
+**Descripción:** Crear módulo para procesar e validar el payload JSON da API conforme schema_etapa01.json, garantindo a compatibilidade com o ValidationService e preparando para a criação do objeto Movimiento.
 **Localización:** src/parsers/json_parser.py
 **Entrada:** Conteúdo bytes do arquivo JSON
-**Saída:** Dicionário válido conforme schema_etapa01.json con todos os campos obrigatórios e tipos corretos.
+**Saída:** Dicionário válido conforme schema_etapa01.json con todos los campos obrigatórios e tipos corretos.
 **Requisitos:**
 - Validar estructura JSON contra schema_etapa01.json (arquivo: config/schemas/schema_etapa01.json)
 - Aplicar valores padrão definidos no schema para campos opcionais ausentes
@@ -143,12 +152,12 @@
 - Fornecer mensagens de erro claras y específicas para JSON malformed o inválido contra el schema
 - Lidar con codificación UTF-8 padrão
 - Implementar funciones de apoyo para extração de subestruturas (detalles, pagos) se necesario para validações futuras
-- Manter consistencia con el estilo do projeto (docstrings, tratamento de exceções, logging)
+- Manter consistencia con el estilo do projeto (docstrings, tratamiento de exceções, logging)
 **Critérios de Aceite:**
 - Processa JSON válido conforme schema_etapa01.json e retorna dicionário con todos os campos
 - Aplica corretamente valores padrão conforme definido no schema
 - Detecta e relata erros de validação de schema con mensagens específicas (campo ausente, tipo incorreto, etc.)
-- Mensagens de erro incluyen camino do campo problemático para facilitar depuración
+- Mensajes de error incluyen camino do campo problemático para facilitar depuración
 - Performance adecuada (<500ms para payloads típicos de até 10KB)
 - Código sigue padrões do projeto (PEP 8, imports claros, docstrings completas)
 - Compatível con el ValidationService existente (não quebra funcionalidade atual)
